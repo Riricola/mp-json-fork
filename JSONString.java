@@ -1,9 +1,10 @@
 import java.io.PrintWriter;
+import java.util.Comparator;
 
 /**
  * JSON strings.
  */
-public class JSONString {
+public class JSONString implements JSONValue{
 
   // +--------+------------------------------------------------------
   // | Fields |
@@ -13,6 +14,9 @@ public class JSONString {
    * The underlying string.
    */
   String value;
+
+
+
 
   // +--------------+------------------------------------------------
   // | Constructors |
@@ -33,21 +37,33 @@ public class JSONString {
    * Convert to a string (e.g., for printing).
    */
   public String toString() {
-    return "";          // STUB
+    if (value == null) {
+      return "null";
+    } else {
+      return this.value.toString();
+    }
   } // toString()
 
   /**
    * Compare to another object.
    */
   public boolean equals(Object other) {
-    return true;        // STUB
+
+    return ( ( (other instanceof JSONString) 
+               && (this.value == ((JSONString) other).value) )
+             || (this.value == other) );
+    
   } // equals(Object)
 
   /**
    * Compute the hash code.
    */
   public int hashCode() {
-    return 0;           // STUB
+    if (this.value == null) {
+      return 0;
+    } else {
+      return this.value.hashCode();
+    }
   } // hashCode()
 
   // +--------------------+------------------------------------------
@@ -58,7 +74,18 @@ public class JSONString {
    * Write the value as JSON.
    */
   public void writeJSON(PrintWriter pen) {
-                        // STUB
+    String returnString = new String();
+    for (int i = 0; i < this.value.length(); i++) {
+      if (this.value.charAt(i) == 'c' ){
+        returnString += null;
+
+
+
+        if (this.value.charAt(i+1) == '"') {
+          returnString += '"';
+        }
+      }
+    }
   } // writeJSON(PrintWriter)
 
   /**
