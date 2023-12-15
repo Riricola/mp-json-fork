@@ -5,7 +5,7 @@ import java.util.Iterator;
 /**
  * JSON arrays.
  */
-public class JSONArray {
+public class JSONArray implements JSONValue{
 
   // +--------+------------------------------------------------------
   // | Fields |
@@ -35,21 +35,51 @@ public class JSONArray {
    * Convert to a string (e.g., for printing).
    */
   public String toString() {
-    return "";          // STUB
+    String string = "[";
+    /**
+     * Uses an iterator to check for remaining values in the array, and add next value to a return string
+     * add a comma to return string while there are more values to add
+     */
+    Iterator iter = this.values.iterator();
+    while(iter.hasNext()){
+      string += iter.next();
+      if(iter.hasNext() == true){ 
+        string += ", ";
+      } 
+      /* else{
+        string += "]";
+      }
+      */
+    }//while
+    /**
+     * Close with a brace and return string
+     */
+    string += "]";
+    return string;       
   } // toString()
 
   /**
    * Compare to another object.
    */
   public boolean equals(Object other) {
-    return true;        // STUB
+    /**
+     * first check if other is this type
+     * then create JSONArray using other object
+     * return true/false
+     */
+    if((other instanceof JSONArray)){
+      JSONArray otherArr = (JSONArray) other;
+      return this.values.equals(otherArr.values);
+      
+    }//if
+    return false;
   } // equals(Object)
 
   /**
    * Compute the hash code.
    */
   public int hashCode() {
-    return 0;           // STUB
+    return this.values.hashCode();
   } // hashCode()
 
   // +--------------------+------------------------------------------
@@ -60,7 +90,7 @@ public class JSONArray {
    * Write the value as JSON.
    */
   public void writeJSON(PrintWriter pen) {
-                        // STUB
+    pen.println(this.toString());
   } // writeJSON(PrintWriter)
 
   /**

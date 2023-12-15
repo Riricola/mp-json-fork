@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 /**
  * JSON reals.
  */
-public class JSONReal {
+public class JSONReal implements JSONValue {
 
   // +--------+------------------------------------------------------
   // | Fields |
@@ -75,8 +75,11 @@ public class JSONReal {
    * Write the value as JSON.
    */
   public void writeJSON(PrintWriter pen) {
-    
+    pen.println(this.toString());
+  
   } // writeJSON(PrintWriter)
+
+  
 
   /**
    * Get the underlying value.

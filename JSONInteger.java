@@ -4,7 +4,7 @@ import java.math.BigInteger;
 /**
  * JSON integers.
  */
-public class JSONInteger {
+public class JSONInteger implements JSONValue {
 
   // +--------+------------------------------------------------------
   // | Fields |
@@ -56,8 +56,7 @@ public class JSONInteger {
    */
   public boolean equals(Object other) {
     return (((other instanceof JSONInteger) 
-      && (this.value == ((JSONInteger) other).value))
-      || (this.value == other));
+      && (this.value == ((JSONInteger) other).value)));
   } // equals(Object)
 
   /**
